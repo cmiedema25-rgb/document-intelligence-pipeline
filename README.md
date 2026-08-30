@@ -5,16 +5,41 @@
 [![TypeScript strict](https://img.shields.io/badge/TypeScript-strict-3178C6.svg)](sdk/tsconfig.json)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-An evidence-first pipeline that turns invoices and OCR output into validated,
-structured JSON. Every extracted value includes a confidence score and a link
-back to the source block, making the result reviewable instead of opaque.
+An evidence-first pipeline that turns invoices, purchase orders, and OCR output
+into validated structured JSON. Every extracted value includes a confidence
+score and source block, making the result reviewable instead of opaque.
+
+## Reviewer proof in 60 seconds
+
+This repository includes a retained machine-readable report and a one-command
+clean verification path. No API key, hosted model, or private service is needed.
+
+| Verifiable outcome | Retained evidence | Reproduce it |
+| --- | --- | --- |
+| 3/3 invoice and purchase-order cases passed | [`evidence/benchmark-report.json`](evidence/benchmark-report.json) | `make benchmark` |
+| 23/23 normalized business fields matched golden data | [`evidence/benchmark-report.json`](evidence/benchmark-report.json) | `make benchmark` |
+| Macro precision, recall, and F1 were each 1.0000 | [`evidence/benchmark-report.json`](evidence/benchmark-report.json) | `make benchmark` |
+| All 3 line-item counts matched | [`evidence/benchmark-report.json`](evidence/benchmark-report.json) | `make benchmark` |
+| 24 Python tests and 6 TypeScript tests passed | [`evidence/VERIFICATION.md`](evidence/VERIFICATION.md) | `make verify` |
+| Python statement coverage was 84.76% (70% floor) | [`evidence/VERIFICATION.md`](evidence/VERIFICATION.md) | `make test` |
+
+```bash
+python -m venv .venv && source .venv/bin/activate
+python -m pip install -e '.[dev]'
+make verify
+```
+
+The benchmark uses three checked-in synthetic documents. These numbers prove
+the included behavior is reproducible; they are not a claim about arbitrary
+production documents or customer ROI. See the complete [verification
+record](evidence/VERIFICATION.md) and [skill-to-code map](docs/SKILL_EVIDENCE.md).
 
 The repository is intentionally focused on **three skills**:
 
 | Skill | Proof in this repository |
 | --- | --- |
 | **Document AI & Extraction** | OCR block ingestion, document classification, normalized fields, line items, confidence, source evidence, arithmetic validation, and a golden-data benchmark |
-| **Python** | Typed package, CLI, local JSON API, adapters, extraction pipeline, metrics, unit/integration tests, Ruff, and Python 3.11/3.12 CI |
+| **Python** | Typed package, CLI, local JSON API, adapters, extraction pipeline, metrics, unit/integration tests, Ruff, and Python 3.11-3.13 CI |
 | **TypeScript** | Strict typed SDK, runtime response validation, fetch client, declaration output, tests, and Node CI |
 
 See [Skill Evidence](docs/SKILL_EVIDENCE.md) for direct links from each claim to
@@ -163,29 +188,30 @@ line items, processing metadata, and provenance hashes.
 ## Benchmark
 
 ```bash
-docintel benchmark samples/benchmark.json
+docintel benchmark samples/benchmark.json \
+  --report evidence/benchmark-report.json
 ```
 
 The benchmark compares normalized business-field values and line-item counts
-against checked-in golden data. This makes extraction changes measurable and
-causes CI to fail when accuracy drops below the configured threshold.
+against checked-in golden data. Its aggregate result is 23/23 fields matched,
+macro F1 1.0000, and 3/3 matching line-item counts. CI fails if any case falls
+below the configured F1 threshold or has the wrong line-item count.
 
 ## Tests and CI
 
 ```bash
-ruff check .
-pytest --cov=document_intelligence --cov-report=term-missing -q
-cd sdk && npm test
+make verify
 ```
 
 GitHub Actions verifies:
 
-- Python 3.11 and 3.12
+- Python 3.11, 3.12, and 3.13
 - linting and typed package installation
-- unit and HTTP integration tests
+- Ruff formatting plus unit, CLI, and HTTP integration tests
 - real extraction against the OCR fixture
-- golden-data benchmark accuracy
+- three-document golden-data benchmark accuracy
 - TypeScript strict compilation, declaration generation, and Node tests
+- CodeQL analysis for Python and JavaScript/TypeScript
 
 ## Repository layout
 

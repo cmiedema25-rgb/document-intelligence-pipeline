@@ -1,0 +1,49 @@
+{
+  "minimum_f1": 0.95,
+  "case_count": 3,
+  "passed": true,
+  "summary": {
+    "matched_fields": 23,
+    "expected_fields": 23,
+    "macro_precision": 1.0,
+    "macro_recall": 1.0,
+    "macro_f1": 1.0,
+    "line_item_count_matches": 3
+  },
+  "results": [
+    {
+      "name": "synthetic OCR invoice",
+      "matched_fields": 8,
+      "expected_fields": 8,
+      "predicted_fields": 8,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "line_item_count_match": true,
+      "passed": true
+    },
+    {
+      "name": "synthetic text invoice",
+      "matched_fields": 8,
+      "expected_fields": 8,
+      "predicted_fields": 8,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "line_item_count_match": true,
+      "passed": true
+    },
+    {
+      "name": "synthetic text purchase order",
+      "matched_fields": 7,
+      "expected_fields": 7,
+      "predicted_fields": 7,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "line_item_count_match": true,
+      "passed": true
+    }
+  ],
+  "limitations": "This benchmark uses three checked-in synthetic documents and does not represent production accuracy across arbitrary layouts or languages."
+}

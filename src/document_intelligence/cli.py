@@ -65,9 +65,34 @@ def _benchmark(args: argparse.Namespace) -> int:
         "minimum_f1": args.minimum_f1,
         "case_count": len(results),
         "passed": all_passed,
+        "summary": {
+            "matched_fields": sum(int(result["matched_fields"]) for result in results),
+            "expected_fields": sum(int(result["expected_fields"]) for result in results),
+            "macro_precision": round(
+                sum(float(result["precision"]) for result in results) / len(results),
+                4,
+            ),
+            "macro_recall": round(
+                sum(float(result["recall"]) for result in results) / len(results),
+                4,
+            ),
+            "macro_f1": round(
+                sum(float(result["f1"]) for result in results) / len(results),
+                4,
+            ),
+            "line_item_count_matches": sum(
+                bool(result["line_item_count_match"]) for result in results
+            ),
+        },
         "results": results,
+        "limitations": (
+            "This benchmark uses three checked-in synthetic documents and does not "
+            "represent production accuracy across arbitrary layouts or languages."
+        ),
     }
     _write_json(report, None, compact=False)
+    if args.report is not None:
+        _write_json(report, args.report, compact=False)
     return 0 if all_passed else 1
 
 
@@ -87,6 +112,7 @@ def build_parser() -> argparse.ArgumentParser:
     benchmark_parser = subparsers.add_parser("benchmark", help="Run a golden-data benchmark")
     benchmark_parser.add_argument("manifest", type=Path)
     benchmark_parser.add_argument("--minimum-f1", type=float, default=0.95)
+    benchmark_parser.add_argument("--report", type=Path)
     benchmark_parser.set_defaults(handler=_benchmark)
 
     serve_parser = subparsers.add_parser("serve", help="Run the local extraction API")

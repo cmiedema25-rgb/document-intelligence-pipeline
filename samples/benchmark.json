@@ -4,6 +4,16 @@
       "name": "synthetic OCR invoice",
       "input": "northstar-invoice.ocr.json",
       "expected": "expected/northstar-invoice.json"
+    },
+    {
+      "name": "synthetic text invoice",
+      "input": "northstar-invoice.txt",
+      "expected": "expected/northstar-invoice.json"
+    },
+    {
+      "name": "synthetic text purchase order",
+      "input": "purchase-order.txt",
+      "expected": "expected/sierra-purchase-order.json"
     }
   ]
 }

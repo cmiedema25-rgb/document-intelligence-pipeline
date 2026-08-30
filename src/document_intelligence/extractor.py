@@ -247,7 +247,5 @@ def extract_fields(document: SourceDocument, document_type: str) -> dict[str, Ex
     if document_type == "invoice":
         fields["invoice_number"] = _first_match(document.blocks, _INVOICE_NUMBER_PATTERNS)
     if document_type == "purchase_order":
-        fields["purchase_order_number"] = _first_match(
-            document.blocks, _PURCHASE_ORDER_PATTERNS
-        )
+        fields["purchase_order_number"] = _first_match(document.blocks, _PURCHASE_ORDER_PATTERNS)
     return {name: field for name, field in fields.items() if field is not None}

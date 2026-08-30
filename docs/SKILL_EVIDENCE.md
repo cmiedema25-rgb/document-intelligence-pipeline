@@ -1,7 +1,8 @@
 # Skill evidence
 
-This page maps each portfolio claim to inspectable code, tests, and a command a
-reviewer can run. The repository deliberately proves three related skills only.
+This page maps each portfolio claim to inspectable code, retained results, and
+a command a reviewer can run. The repository deliberately proves three related
+skills only.
 
 ## Document AI & Extraction
 
@@ -12,19 +13,25 @@ Evidence:
 - `src/document_intelligence/extractor.py` classifies documents, normalizes dates and amounts, extracts fields and line items, and attaches confidence.
 - `src/document_intelligence/pipeline.py` adds SHA-256 provenance, required-field warnings, and total reconciliation.
 - `samples/northstar-invoice.ocr.json` is a layout-aware synthetic OCR fixture.
-- `samples/expected/northstar-invoice.json` is checked-in golden data.
+- `samples/expected/` contains checked-in invoice and purchase-order golden data.
 - `tests/test_pipeline.py` verifies normalized values, source evidence, line items, totals, warnings, and provenance.
+- `tests/test_cli.py` verifies the aggregate reviewer report rather than only a
+  console exit code.
+- `evidence/benchmark-report.json` retains the exact per-document and aggregate
+  result produced by the public CLI.
 
 Verify:
 
 ```bash
 docintel extract samples/northstar-invoice.ocr.json
-docintel benchmark samples/benchmark.json
+docintel benchmark samples/benchmark.json \
+  --report evidence/benchmark-report.json
 ```
 
-Expected benchmark result: field F1 `1.0`, matching line-item count, and a passed
-case. The pipeline also intentionally reports incomplete or inconsistent input
-instead of silently treating it as valid.
+Expected aggregate result: 3/3 cases passed, 23/23 normalized fields matched,
+macro precision/recall/F1 of `1.0000`, and 3/3 matching line-item counts. The
+pipeline also intentionally reports incomplete or inconsistent input instead
+of silently treating it as valid.
 
 ## Python
 
@@ -34,14 +41,17 @@ Evidence:
 - Explicit validation and structured exceptions at input boundaries.
 - Unit and integration tests under `tests/`, including an actual ephemeral HTTP server.
 - `pyproject.toml` packaging, console entry point, optional extras, Ruff rules, and pytest configuration.
-- `.github/workflows/ci.yml` matrix for Python 3.11 and 3.12.
+- `.github/workflows/ci.yml` matrix for Python 3.11, 3.12, and 3.13 with a 70%
+  statement-coverage floor.
+- `.github/workflows/codeql.yml` performs Python and JavaScript/TypeScript
+  security analysis.
 
 Verify:
 
 ```bash
 python -m pip install -e ".[dev]"
-ruff check .
-pytest --cov=document_intelligence --cov-report=term-missing -q
+make lint
+make test
 ```
 
 ## TypeScript
@@ -65,6 +75,16 @@ npm test
 
 ## Review guidance
 
-Start with `tests/test_pipeline.py`, then compare the OCR fixture with the JSON
-emitted by the CLI. For TypeScript, start with `sdk/test/client.test.ts`. The
-tests demonstrate behavior more directly than a list of claimed technologies.
+Start with `evidence/benchmark-report.json`, then compare any entry in
+`samples/expected/` with the source document and JSON emitted by the CLI. For
+Python behavior, read `tests/test_pipeline.py` and `tests/test_cli.py`; for the
+strict client, read `sdk/test/client.test.ts`. The retained report plus tests
+demonstrate behavior more directly than a list of claimed technologies.
+
+## Measurement boundary
+
+All included organizations and documents are fictional. The three-case
+benchmark is a deterministic regression baseline, not an independently sampled
+production-accuracy study. It measures exact normalized fields and line-item
+counts; it does not measure OCR quality, throughput, human-review time saved, or
+financial ROI in a customer deployment.

@@ -23,7 +23,7 @@ dependencies = []
 
 [project.optional-dependencies]
 pdf = ["pypdf>=5.0,<7"]
-dev = ["pytest>=8.0,<10", "pytest-cov>=5.0,<8", "ruff>=0.8,<1"]
+dev = ["pytest==9.1.1", "pytest-cov==7.1.0", "ruff==0.16.5"]
 
 [project.scripts]
 docintel = "document_intelligence.cli:main"

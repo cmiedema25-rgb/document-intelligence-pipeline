@@ -1,0 +1,16 @@
+{
+  "document_type": "purchase_order",
+  "fields": {
+    "vendor_name": "Sierra Industrial Parts",
+    "currency": "USD",
+    "purchase_order_number": "PO-88031",
+    "invoice_date": "2026-08-20",
+    "subtotal": "325.00",
+    "tax": "0.00",
+    "total": "325.00"
+  },
+  "line_items": [
+    {"description": "Safety Labels, Pack of 100"},
+    {"description": "Warehouse Barcode Scanner"}
+  ]
+}
