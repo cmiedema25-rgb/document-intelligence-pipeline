@@ -1,0 +1,9 @@
+{
+  "cases": [
+    {
+      "name": "synthetic OCR invoice",
+      "input": "northstar-invoice.ocr.json",
+      "expected": "expected/northstar-invoice.json"
+    }
+  ]
+}

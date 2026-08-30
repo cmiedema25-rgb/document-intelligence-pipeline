@@ -1,0 +1,11 @@
+SIERRA INDUSTRIAL PARTS
+PURCHASE ORDER
+Purchase Order Number: PO-88031
+Date: 08/20/2026
+Currency: USD
+Description | Quantity | Unit Price | Amount
+Safety Labels, Pack of 100 | 4 | $18.75 | $75.00
+Warehouse Barcode Scanner | 2 | $125.00 | $250.00
+Subtotal: $325.00
+Tax: $0.00
+Total: $325.00

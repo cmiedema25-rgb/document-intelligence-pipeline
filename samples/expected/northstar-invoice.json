@@ -1,0 +1,17 @@
+{
+  "document_type": "invoice",
+  "fields": {
+    "vendor_name": "Northstar Office Supply",
+    "currency": "USD",
+    "invoice_number": "INV-2026-1042",
+    "invoice_date": "2026-08-15",
+    "due_date": "2026-09-14",
+    "subtotal": "348.00",
+    "tax": "28.71",
+    "total": "376.71"
+  },
+  "line_items": [
+    {"description": "Ergonomic Keyboard"},
+    {"description": "USB-C Docking Station"}
+  ]
+}

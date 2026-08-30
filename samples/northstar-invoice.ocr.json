@@ -1,0 +1,18 @@
+{
+  "provider": "synthetic-ocr-fixture",
+  "blocks": [
+    {"id": "b01", "page": 1, "text": "NORTHSTAR OFFICE SUPPLY", "bbox": [0.08, 0.05, 0.46, 0.03]},
+    {"id": "b02", "page": 1, "text": "225 Market Avenue, Summit, CA 90000", "bbox": [0.08, 0.09, 0.50, 0.02]},
+    {"id": "b03", "page": 1, "text": "Invoice Number: INV-2026-1042", "bbox": [0.60, 0.05, 0.31, 0.02]},
+    {"id": "b04", "page": 1, "text": "Invoice Date: August 15, 2026", "bbox": [0.60, 0.08, 0.31, 0.02]},
+    {"id": "b05", "page": 1, "text": "Due Date: September 14, 2026", "bbox": [0.60, 0.11, 0.31, 0.02]},
+    {"id": "b06", "page": 1, "text": "Currency: USD", "bbox": [0.60, 0.14, 0.20, 0.02]},
+    {"id": "b07", "page": 1, "text": "Bill To: Harbor Point Design Studio", "bbox": [0.08, 0.20, 0.45, 0.02]},
+    {"id": "b08", "page": 1, "text": "Description | Qty | Unit Price | Amount", "bbox": [0.08, 0.31, 0.83, 0.03]},
+    {"id": "b09", "page": 1, "text": "Ergonomic Keyboard | 2 | $79.50 | $159.00", "bbox": [0.08, 0.36, 0.83, 0.03]},
+    {"id": "b10", "page": 1, "text": "USB-C Docking Station | 1 | $189.00 | $189.00", "bbox": [0.08, 0.41, 0.83, 0.03]},
+    {"id": "b11", "page": 1, "text": "Subtotal: $348.00", "bbox": [0.66, 0.52, 0.25, 0.02]},
+    {"id": "b12", "page": 1, "text": "Sales Tax (8.25%): $28.71", "bbox": [0.63, 0.55, 0.28, 0.02]},
+    {"id": "b13", "page": 1, "text": "Total Due: $376.71", "bbox": [0.65, 0.58, 0.26, 0.03]}
+  ]
+}

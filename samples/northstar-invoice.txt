@@ -1,0 +1,13 @@
+NORTHSTAR OFFICE SUPPLY
+225 Market Avenue, Summit, CA 90000
+Invoice Number: INV-2026-1042
+Invoice Date: August 15, 2026
+Due Date: September 14, 2026
+Currency: USD
+Bill To: Harbor Point Design Studio
+Description | Qty | Unit Price | Amount
+Ergonomic Keyboard | 2 | $79.50 | $159.00
+USB-C Docking Station | 1 | $189.00 | $189.00
+Subtotal: $348.00
+Sales Tax (8.25%): $28.71
+Total Due: $376.71
