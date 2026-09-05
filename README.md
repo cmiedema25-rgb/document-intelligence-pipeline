@@ -40,6 +40,11 @@ docintel benchmark samples/benchmark.json --report evidence/benchmark-report.jso
 
 Uses checked-in synthetic fixtures — swap in your documents for real runs.
 
+
+## Who this is for
+
+Ops and finance engineers who need extractable invoice/PO fields they can audit — not a black-box document chat. Swap the sample OCR fixtures for your own documents when you are ready for a real run.
+
 ## Layout
 
 ```text

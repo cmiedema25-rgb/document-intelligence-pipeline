@@ -2,6 +2,10 @@
 
 All notable changes to this project are documented here.
 
+## 1.0.1 - 2026-09-05
+
+- Clarified audience in README (ops/finance extract-and-audit use case).
+
 ## 1.0.0 - 2026-08-30
 
 - Added deterministic invoice and purchase-order classification.
